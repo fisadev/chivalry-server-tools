@@ -15,7 +15,7 @@ WEB_CONTROL_TEXT = 'Servers in'
 # windows task name of the server
 TASK_NAME = 'UDKLogging.exe'
 # path to the server bat file to start it
-SERVER_SCRIPT = r'C:\Documents and Settings\mejorserver\Desktop\chivalry\roun_table\start_server.bat'
+SERVER_SCRIPT = r'C:\Documents and Settings\mejorserver\Desktop\chivalry\round_table\start_server.bat'
 
 # time intervals, in seconds
 # every how much check for visibility?
