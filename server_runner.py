@@ -41,7 +41,7 @@ def server_visible():
             # can't be sure the web is working, the page is returning something
             # not expected
             visibility = UNKNOWN
-        elif TASK_NAME not in response:
+        elif SERVER_NAME not in response:
             # server not in list, is invisible
             visibility = INVISIBLE
         else:
