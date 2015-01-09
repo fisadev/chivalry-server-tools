@@ -36,7 +36,7 @@ def server_visible():
     """Is the server visible in the servers list?"""
     print 'Checking server visibility...'
     try:
-        response = requests.get(SERVER_STATUS_URL)
+        response = requests.get(SERVER_STATUS_URL).content
         if WEB_CONTROL_TEXT not in response:
             # can't be sure the web is working, the page is returning something
             # not expected
