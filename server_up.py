@@ -106,3 +106,6 @@ def check_loop():
             # server not running, start it and wait for it to appear on lists
             # before doing another check
             start_server()
+
+
+check_loop()
