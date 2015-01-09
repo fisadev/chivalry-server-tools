@@ -1,5 +1,5 @@
 # coding: utf-8
-from os import popen, system
+from os import popen, system, startfile
 from time import sleep
 
 import requests
@@ -82,7 +82,7 @@ def stop_server():
 def start_server():
     """Start the server process in windows."""
     print 'Starting server...'
-    system(SERVER_SCRIPT)
+    startfile(SERVER_SCRIPT)
     sleep(SERVER_START_DELAY)
     print 'Done'
 
