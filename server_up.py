@@ -89,7 +89,7 @@ def start_server():
 
 def check_loop():
     while True:
-        running = server_running
+        running = server_running()
         if running:
             # server running, is it visible?
             visibility = server_visible()
