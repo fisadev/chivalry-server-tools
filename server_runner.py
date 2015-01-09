@@ -46,8 +46,8 @@ def server_visible():
             visibility = INVISIBLE
         else:
             # server in list, but is it responding?
-            list_row = PyQuery(response)('a:contains("%s")' % SERVER_NAME).parents('tr')
-            if 'noResponse' in list_row.attr('class'):
+            no_response_row = PyQuery(response)('a:contains("%s")' % SERVER_NAME).parents('.noResponse')
+            if no_response_row:
                 # the site says the server is not responding
                 visibility = INVISIBLE
             else:
