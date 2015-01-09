@@ -1,4 +1,5 @@
 # coding: utf-8
+from datetime import datetime
 from os import popen, system, startfile
 from time import sleep
 
@@ -89,6 +90,7 @@ def start_server():
 
 def check_loop():
     while True:
+    	print 'Check', datetime.now()
         running = server_running()
         if running:
             # server running, is it visible?
