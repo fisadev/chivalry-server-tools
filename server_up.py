@@ -34,36 +34,41 @@ UNKNOWN = 'unknown'
 
 def server_visible():
     """Is the server visible in the servers list?"""
+    print 'Checking server visibility...'
     try:
         response = requests.get(SERVER_STATUS_URL)
+        if WEB_CONTROL_TEXT not in response:
+            # can't be sure the web is working, the page is returning something
+            # not expected
+            visibility = UNKNOWN
+        elif TASK_NAME not in response:
+            # server not in list, is invisible
+            visibility = INVISIBLE
+        else:
+            # server in list, but is it responding?
+            list_row = PyQuery(response)('a.contains("%s")' % SERVER_NAME).parents('tr')
+            if 'noResponse' in list_row.attr('class'):
+                # the site says the server is not responding
+                visibility = INVISIBLE
+            else:
+                # server visible! yay for uptime :)
+                visibility = VISIBLE
+
     except Exception as err:
         # web not accessible, can't be sure of server status
         print err
-        return UNKNOWN
+        visibility = UNKNOWN
 
-    if WEB_CONTROL_TEXT not in response:
-        # can't be sure the web is working, the page is returning something not
-        # expected
-        return UNKNOWN
-
-    if TASK_NAME not in response:
-        # server not in list, is invisible
-        return INVISIBLE
-
-    # server in list, but is it responding?
-    list_row = PyQuery(response)('a.contains("%s")' % SERVER_NAME).parents('tr')
-    if 'noResponse' in list_row.attr('class'):
-        # the site says the server is not responding
-        return INVISIBLE
-    else:
-        # server visible! yay for uptime :)
-        return VISIBLE
-
+    print 'Result:', visibility
+    return visibility
 
 def server_running():
     """Is the server process running in windows?"""
+    print 'Checking server running...'
     tasks = popen('tasklist').readlines()
-    return TASK_NAME in tasks
+    running = TASK_NAME in tasks
+    print 'Result:', running
+    return running
 
 
 def stop_server():
@@ -71,6 +76,7 @@ def stop_server():
     print 'Stopping server...'
     system('taskkill /im ' + TASK_NAME)
     sleep(SERVER_STOP_DELAY)
+    print 'Done'
 
 
 def start_server():
@@ -78,6 +84,7 @@ def start_server():
     print 'Starting server...'
     system('taskkill /im ' + TASK_NAME)
     sleep(SERVER_START_DELAY)
+    print 'Done'
 
 
 def check_loop():
