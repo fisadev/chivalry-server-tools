@@ -65,7 +65,7 @@ def server_visible():
 def server_running():
     """Is the server process running in windows?"""
     print 'Checking server running...'
-    tasks = popen('tasklist').readlines()
+    tasks = popen('tasklist').read()
     running = TASK_NAME in tasks
     print 'Result:', running
     return running
