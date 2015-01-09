@@ -82,7 +82,7 @@ def stop_server():
 def start_server():
     """Start the server process in windows."""
     print 'Starting server...'
-    system('taskkill /im ' + TASK_NAME)
+    system(SERVER_SCRIPT)
     sleep(SERVER_START_DELAY)
     print 'Done'
 
