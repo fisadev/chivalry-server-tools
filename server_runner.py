@@ -25,6 +25,8 @@ CHECK_INTERVAL = 300
 SERVER_START_DELAY = 300
 # how much does the server takes to stop
 SERVER_STOP_DELAY = 30
+# how much to wait after an "unknown" result in the visibility
+UNKNOWN_VISIBILITY_DELAY = 60
 
 
 # possible server visibility values
@@ -102,8 +104,8 @@ def check_loop():
                 # everything fine, wait for next check
                 sleep(CHECK_INTERVAL)
             elif visibility == UNKNOWN:
-                # don't know if visible, try again inmediatly
-                pass
+                # don't know if visible, try again
+                sleep(UNKNOWN_VISIBILITY_DELAY)
         else:
             # server not running, start it and wait for it to appear on lists
             # before doing another check
