@@ -20,7 +20,7 @@ SERVER_SCRIPT = r'C:\Documents and Settings\mejorserver\Desktop\chivalry\round_t
 
 # time intervals, in seconds
 # every how much check for visibility?
-CHECK_INTERVAL = 60
+CHECK_INTERVAL = 300
 # how much does the server takes to start and appear on the lists
 SERVER_START_DELAY = 300
 # how much does the server takes to stop
